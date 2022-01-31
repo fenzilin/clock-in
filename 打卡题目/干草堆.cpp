@@ -17,5 +17,4 @@ int main()
     for(int i=1;i<=n;i++) f[i]=f[i]+f[i-1];
     sort(f+1,f+n+1);
     cout<<f[(n+1)/2]<<endl;
-    
 }
