@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+int N,M,V;
+int dp[111][111];
+int main(){
+    cin>>N>>V>>M;
+    for(int i=1;i<=N;i++){
+        int v,m,w;
+        cin>>v>>m>>w;
+        for(int j=V;j>=v;j--){
+            for(int k=M;k>=m;k--){
+                dp[j][k]=max(dp[j][k],dp[j-v][k-m]+w);
+            }
+        }
+    }
+    cout<<dp[V][M];
+    return 0;
+}
