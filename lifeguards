@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+using namespace std;
+const int N = 105;
+int n;
+int l[N];
+int r[N];
+int d[1005];
+int h[1005];
+int main()
+{
+    cin >> n;
+    memset(d,0,sizeof d);
+    memset(h,0,sizeof h);
+    for(int i = 0;i < n;i ++) {
+        cin >> l[i] >> r[i];
+        d[l[i]] ++ , d[r[i]] --;
+    }
+    int sum = 0;
+    if(d[0]) sum = 1;
+    if(d[0] == 1) h[0] = 1;
+    for(int i = 1;i < 1001;i ++) {
+        d[i] += d[i - 1];
+        if(d[i]) sum ++;
+        if(d[i] == 1) h[i] = 1;
+        h[i] += h[i - 1];
+    }
+    int res = 100000;
+    for(int i = 0;i < n;i ++) {
+        if(l[i] == 0) res = min(res,h[r[i] - 1]);
+        else res = min(res,h[r[i] - 1] - h[l[i] - 1]);
+    }
+    cout<<sum - res<<endl;
+    return 0;
+}
