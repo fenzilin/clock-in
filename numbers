@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    double a;
+    cin>>a;
+    double l=-100000,r=100000,mid;
+    while(r-l>1e-8)
+    {
+        mid=(r+l)/2;
+        if(mid*mid*mid<=a)l=mid;
+        else r=mid;
+    }
+    printf("%.6f",l);
+    return 0;
+}
