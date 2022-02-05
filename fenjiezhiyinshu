@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool isprime(int n)
+{
+    if(n==1) return false;
+    for(int i=2;i<=n/i;i++)
+    {
+        if(n%i==0) return false;
+    }
+    return true;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    while(n--)
+    {
+        int x;
+        cin>>x;
+        for(int i=2;i<=x/i;i++)
+        {
+            int sum=0;
+            if(x%i==0&&isprime(i))
+            {  
+                while(x%i==0)
+                {
+                 x/=i;
+                 sum++;
+                }
+                cout<<i<<" "<<sum<<endl;
+            }
+        }
+        if(x>1) cout<<x<<" "<<1<<endl;
+        cout<<endl;
+    }
+    
+}
