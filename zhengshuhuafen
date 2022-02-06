@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+int f[1100][1100];
+const int mod=1e9+7;
+int main()
+{
+    int n;
+    cin>>n;
+    f[0][0]=1;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=i;j++)
+        {
+            f[i][j]=(f[i-j][j]+f[i-1][j-1])%mod;
+        }
+    }
+    int ans=0;
+    for(int i=1;i<=n;i++) ans=(ans+f[n][i])%mod;
+    cout<<ans<<endl;
+}
