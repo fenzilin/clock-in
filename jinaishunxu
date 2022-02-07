@@ -1,0 +1,62 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+typedef pair<int ,int >PII;
+const int N=110;
+int a[N];
+PII b[N];
+int st[N],bck[N],g[N];
+bool flg[N];
+int n,m,k;
+bool check(int x)
+{
+    memcpy(bck,st,sizeof st);
+    bck[x]=1;
+    g[1]=x;
+    for(int i=1,j=1;j<=m;)
+    {
+        if(bck[i])
+        {
+            i++;
+            continue;
+        }
+        if(a[j]==1)
+        {
+            j++;
+            continue;
+        }
+        if(flg[a[j]]&&a[j]!=1)
+        {
+            i=g[a[j]]+1;
+            j++;
+            continue;
+        }
+        g[a[j++]]=i++;
+    }
+    for(int i=1;i<=m;i++)
+    {
+        if(g[a[i]]<g[a[i-1]])return false;
+    }
+    return true;
+}
+int main()
+{
+    cin>>n>>m>>k;
+    for(int i=1;i<=m;i++)cin>>a[i];
+    for(int i=1;i<=k;i++)
+    {
+        cin>>b[i].first>>b[i].second;
+        st[b[i].second]=b[i].first;
+        flg[b[i].first]=true;
+        g[b[i].first]=b[i].second;
+    }
+    for(int i=1;i<=n;i++)
+    {
+        if(!st[i]&&check(i))
+        {
+            cout<<i<<endl;
+            break;
+        }
+    }
+    return 0;
+}
