@@ -1,0 +1,45 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+const int N=1100;
+int f[1100][1100];
+char a[1100][1100];
+int n,m;
+int ebit_distance(char a[],char b[])
+{
+    int lena=strlen(a+1);
+    int lenb=strlen(b+1);
+    for(int i=1;i<=lena;i++) f[i][0]=i;
+    for(int j=1;j<=lenb;j++) f[0][j]=j;
+    for(int i=1;i<=lena;i++)
+    {
+        for(int j=1;j<=lenb;j++)
+        {
+            f[i][j]=min(f[i-1][j]+1,f[i][j-1]+1);
+            f[i][j]=min(f[i][j],f[i-1][j-1]+(a[i]!=b[j]));
+        }
+    }
+    return f[lena][lenb];
+    
+}
+int main()
+{
+    
+    scanf("%d%d",&n,&m);
+    for(int i=1;i<=n;i++) scanf("%s",a[i]+1);
+    while(m--)
+    {
+        char str[N];
+        int limit;
+        scanf("%s%d",str+1,&limit);
+        int res=0;
+        for(int i=1;i<=n;i++)
+        {
+            if(ebit_distance(str,a[i])<=limit) res++;
+        }
+        printf("%d\n",res);
+        
+    }
+    
+    
+}
