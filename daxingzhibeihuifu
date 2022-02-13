@@ -1,0 +1,39 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+const int N=150;
+int h[N],e[N*2],ne[N*2],dix;
+int n,m;
+bool st[N][5];
+int add(int a,int b)
+{
+    e[dix]=b,ne[dix]=h[a],h[a]=dix++;
+}
+int main()
+{
+    cin>>n>>m;
+    memset(h,-1,sizeof h);
+    while(m--)
+    {
+        int a,b;
+        cin>>a>>b;
+        add(a,b),add(b,a);
+    }
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=4;j++)
+        {
+            if(!st[i][j])
+            {
+                cout<<j;
+                for(int k=h[i];~k;k=ne[k])
+                {
+                    int u=e[k];
+                    st[u][j]=true;
+                }
+                break;
+            }
+        }
+    }
+    return 0;
+}
