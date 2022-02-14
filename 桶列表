@@ -1,0 +1,25 @@
+include<iostream>
+#include<map>
+using namespace std;
+const int N=110;
+map<int,int >mp;
+int n,res;
+int main()
+{
+    cin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        int a,b,c;
+        cin>>a>>b>>c;
+        mp[a]+=c;
+        mp[b+1]-=c;
+    }
+    int sum=0;
+    for(auto x:mp)
+    {
+        res=max(res,sum);
+        sum+=x.second;
+    }
+    cout<<res;
+    return 0;
+}
