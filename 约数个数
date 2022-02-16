@@ -1,0 +1,37 @@
+#include<iostream>
+#include<algorithm>
+#include<unordered_map>
+
+using namespace std;
+
+const int mod=1e9+7;
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    unordered_map<int,int> primes;//映射函数
+
+    while(n--)
+    {
+        int x;
+        scanf("%d",&x);
+
+        for(int i=2;i<=x/i;i++)
+        while(x%i==0)
+        {
+            primes[i]++;
+            x/=i;//方便求得约数的数量
+        }
+
+        if(x>1) primes[x]++;//x的最大公约数可能大于sqrt(x);
+    }
+
+    long long res=1;
+    for(auto p:primes) res=res*(p.second+1)%mod;//将统计出来的数按照由图中公式所得出来的结论得出答案
+
+    printf("%lld\n",res);
+
+    return 0;
+}
