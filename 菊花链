@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+const int N=105;
+
+int n;
+//防止精度问题用double
+double a[N];
+double s[N];
+
+int main(){
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++){
+        scanf("%lf",&a[i]);
+        s[i]=s[i-1]+a[i];  //前缀和.s[i]:表示1~i中花瓣的数量
+    }
+
+    int ans=0;
+    //枚举i~j长度的照片
+    for(int i=1;i<=n;i++){
+        for(int j=i;j<=n;j++){
+            double sum=(s[j]-s[i-1])/(j-i+1);   //sum:i~j长度的照片中花瓣的数量
+            for(int k=i;k<=j;k++){  //枚举i~j长度的照片中是否存在平均花
+                if(a[k]==sum){   //存在则答案++,必须break,因为存在多朵平均花也是一张照片
+                    ans++;
+                    break;
+                }
+            }
+        }
+    }
+    cout<<ans<<endl;
+    return 0;
+}
