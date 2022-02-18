@@ -1,0 +1,32 @@
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+#include <cstdio>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    while(n--)
+    {
+        int num;
+        cin >> num;
+        long long ans = num;
+
+        for(int i = 2; i <= num/i; i++)
+        {
+            if(num % i == 0)
+            {
+                while(num % i == 0)
+                    num /= i;
+                ans = ans/i * (i-1);
+            }
+        }
+
+        if(num > 1)
+            ans = ans/num * (num - 1); 
+
+        cout << ans << endl;
+    }
+}
