@@ -1,0 +1,50 @@
+#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+typedef long long LL;
+const int N=100010,mod=1e9+7;
+
+int fact[N],infact[N];//fact表示阶乘,infact表示阶乘的逆元
+
+int qmi(int a,int k,int p)
+{
+    int res=1;
+    while(k)
+    {
+        if(k&1) res=(LL)res*a%p;
+        a=(LL)a*a%p;
+        k>>=1;
+    }
+    return res;
+}
+
+int main()
+{
+    fact[0]=infact[0]=1;
+    for(int i=1;i<N;i++)
+    {
+        fact[i]=(LL)fact[i-1]*i%mod;//阶乘运算过程
+        infact[i]=(LL)infact[i-1]*qmi(i,mod-2,mod)%mod;
+        /*
+        x=b^(p-2)%p,这里相当于是x=i^(mod-2)%mod
+        所以乘x就相当于除i,因为infact表示阶乘逆元和,
+        因为infact表示除以i的阶乘的逆元,所以乘infact[i-1]
+        相当于乘上1/(i-1)!.又因为乘x相当于除以i,所以infact[i-1]
+        乘上x等于1/i!,也就等于infact[i];
+        */
+    }
+
+    int n;
+    cin>>n;
+    while(n--)
+    {
+        int a,b;
+        scanf("%d%d",&a,&b);
+        printf("%d\n",(LL)fact[a]*infact[a-b]%mod*infact[b]%mod);
+        //mod两次是为了防止结果过大,导致溢出
+    }
+
+    return 0;
+}
