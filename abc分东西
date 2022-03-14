@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int v,a,b,c;
+	cin>>v>>a>>b>>c;
+	v=v%(a+b+c);
+	for(int i = 1; ; i++)
+	{
+	 
+		if(v-a<0)
+		{
+			cout<<"F"<<endl;
+			break;
+		}
+		v-=a;
+		if(v-b<0)
+		{
+			cout<<"M"<<endl;
+			break;
+		}
+		v-=b;
+		if(v-c<0)
+		{
+			cout<<"T"<<endl;
+			break;
+		}
+	} 
+	return 0;
+ } 
