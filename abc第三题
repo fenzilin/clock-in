@@ -1,0 +1,50 @@
+#include<iostream>
+#include<map>
+#include<algorithm>
+using namespace std;
+const int N=2e5+100;
+char s[N];
+struct node
+{
+	int x;
+	int y;
+	int ju;
+};
+map<int,int>mps;
+node a[N]; 
+bool comp(node a,node b)
+{
+	if(a.x==b.x&&a.y==b.y) return a.ju>b.ju;
+	else if(a.x==b.x) return a.y>b.y;
+	else return a.x<b.x;
+}
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	
+	for(int i=1;i<=n;i++) scanf("%d%d",&a[i].x,&a[i].y);
+	scanf("%s",s+1); 
+	for(int i=1;i<=n;i++)
+	{
+		if(s[i]=='L') a[i].ju=-1;
+		else a[i].ju=1;
+	}
+	sort(a+1,a+n+1,comp);
+	int judge=0;
+	for(int i=1;i<=n;i++)
+	{
+		if(mps[a[i].y]&&a[i].ju==-1)
+		{
+			judge=1;
+			break;
+		}
+		else if(mps[a[i].y]==0&&a[i].ju==1)
+		{
+			mps[a[i].y]=1;
+		}
+	}
+	if(judge) cout<<"Yes"<<endl;
+	else cout<<"No"<<endl;
+	
+}
