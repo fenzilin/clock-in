@@ -1,0 +1,18 @@
+#include<iostream>
+using namespace std;
+typedef long long ll;
+ll a[110];
+int main()
+{
+	int n;
+	cin>>n;
+	a[0]=1;
+	for(int i=1;i<=n;i++)
+	{
+		for(int j=0;j<i;j++)
+		{
+			a[i]+=a[j];
+		}
+	}
+	cout<<a[n]<<endl;
+} 
