@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+int a[1000];
+bool s[1000];
+int main()
+{
+    int m;
+    cin >> m;
+    while (m -- )
+    {
+        int n, k;
+        cin >> n >> k;
+        for(int i = 1; i <= k;i ++ )
+        {
+            cin >> a[i];
+        }
+
+        for(int t = 1;; t ++ )
+        {
+            memset(s, false, sizeof s);
+            for(int i = 1; i <= k; i ++ )
+            {
+                int l = a[i]-t+1 , r = a[i]+t-1;
+                for(int j = l; j <= r; j ++ ) s[j] = true;
+            }
+            int flag = true;
+            for(int i = 1; i <= n; i ++ )
+            {
+                if(s[i] == false) flag = false;
+            }
+            if(flag)
+            {
+                cout << t << endl;
+                break;
+            }
+        }
+    }
+}
