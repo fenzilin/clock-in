@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,res;
+int main()
+{
+    cin>>n;
+    while(n)
+    {
+        if(n%16==0||n%16==4||n%16==6||n%16==9||n%16==10||n%16==13)
+        {
+            res+=1;
+        }
+        else if(n%16==8||n%16==11)
+        {
+            res+=2;
+        }
+        n/=16;
+    }
+    cout<<res<<endl;
+    return 0;
+ } 
