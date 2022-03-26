@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std;
+int m,n,o,p;
+int main()
+{
+    cin>>m>>n>>o>>p;
+    if(m<o) cout<<"Takahashi"<<endl;
+    else if(m==o&&n<=p) cout<<"Takahashi"<<endl;
+    else cout<<"Aoki"<<endl;
+    return 0;
+}
