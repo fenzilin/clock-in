@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int inf=1<<30;
+const int maxn=6007;
+const double pi=acos(-1);
+const int mod=1e9+7;
+int c[maxn];
+int ans=0, n;
+
+void res()
+{
+    int m;
+    cin>>m;
+    int b[maxn];
+    for(int i=0;i<m;i++)
+    {
+        scanf("%d",&b[i]);
+    }
+}
+
+//用来得到比n小，以i为开头的数的数目 
+int getnum(int n,int i)
+{
+    int base=1,sum=0;
+    while(n>=(base*(i+1)))
+    {
+        sum+=base;
+        base*=10;
+    }
+    if(n>=(base*i))sum+=n-base*i+1;
+    return sum;
+}
+
+void getans(int &cnt,int cul, int k)
+{
+    if(++cnt==k)
+    {
+        ans=cul;
+        return;
+    }
+    for(int i=0;i<=9;i++)
+    {//注意，这里是从0开始了 
+        int t=cul*10+i;
+        if(t<=n) getans(cnt, t, k);
+        if(cnt>=k) return ;//保证有这一步免得程序重复执行 
+    }
+}
+
+int solve(int k)
+{
+    int i;//注意i不要在for循环里定义 
+    for(i=1;i<=9;i++)
+    {
+        int num=getnum(n,i);
+        if(k>num) k-=num;
+        else break;
+    }
+    int cnt=0;
+    getans(cnt,i, k);
+    return ans;
+    // cout<<ans<<endl;
+}
+
+int main()
+{
+    scanf("%d",&n);
+    res();
+    for(int i = 1;i <=90;i++ ) scanf("%d",&c[i]);
+    for(int i = 1; i <= 50; i ++) cout << solve(i) << ".mp4\n";
+
+    return 0;
+}
