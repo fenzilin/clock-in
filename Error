@@ -1,0 +1,72 @@
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+// #define int long long
+using namespace std;
+typedef long long LL;
+const int N = 110;
+int a[N], b[N];
+int n;
+void quick_sort(int q[], int l, int r)
+{
+    if(l >= r) return;
+    
+    int x=q[l+r >> 1] , i=l-1 , j=r+1;
+     while(i<j)
+     {
+         do i++;while(q[i] < x);
+         do j--;while(q[j] > x);
+         if(i<j) swap(q[i] , q[j]);
+     }
+    
+    quick_sort(q,l,j);
+    quick_sort(q,j+1,r);
+}
+int gcd(int a, int b)  // 欧几里得算法
+{
+    return b ? gcd(b, a % b) : a;
+}
+
+bool check(int eps)
+{
+    int idx = 0;
+    for(int i = 0; i < n; i ++)
+    {
+        int l = a[i] - eps, r = a[i] + eps;
+        if(l <= 0) l = 1;
+        if(idx + 1 > r) return false;
+        if(idx + 1 < l) idx = l;
+        else idx = idx + 1;
+    }
+    
+    return true;
+}
+
+signed main()
+{
+    cin >> n;
+    for(int i = 0; i < n; i ++) scanf("%d",&a[i]);
+    
+    int l = 1, r = 1e9;
+    gcd(1,88);
+    for(int i = 0; i <= 80; i++)
+    {
+        b[i] = i;
+        
+    }
+    quick_sort(b,0,80);
+    
+    while(l < r)
+    {
+        int mid = l + r >> 1;
+        if(check(mid)) r = mid;
+        else l = mid + 1;
+    }
+    for(int i = 0; i <= 80; i++)
+    {
+        b[i] = 0;
+        
+    }
+    cout << r << endl;
+    return 0;
+}
