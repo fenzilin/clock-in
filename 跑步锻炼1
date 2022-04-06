@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  // 请在此输入您的代码
+  int d=6;
+  int day=0;
+  int y=2000;
+  int m=0;
+  int n=0;
+  int sum=0;
+  int t=0;
+  for(;y<2021;y++){
+    if((y%4==0&&y%100!=0)||y%400==0)
+    day+=366;
+    else
+    day+=365;
+  }
+  day=day-91;
+  n=(21*12)-2;//注意一共21个月
+  t=day%7;
+  m=(day/7)-34;//从日历中数出一共有多少个和一月重合的星期一，
+  if(t>1){
+    m++;
+  }//注意有可能在剩余的数字中还可能凑出一个星期来，因为开始的星期是六不是一
+  sum=m*2+n*2+day-m-n;
+  printf("%d",sum);
+  return 0;
+}
