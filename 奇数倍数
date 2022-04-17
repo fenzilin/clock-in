@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+  int a=2019,b=0,c=0;
+  for(int i=1;;i++)
+  {
+    b=0;c=0;
+    int bz=1;
+    c=a*i;
+    while(c!=0)
+    {
+      b=c%10;
+      c=c/10;
+      if(b%2==0) bz=0;
+    }
+    if(bz==1) {cout<<i*a;break;}
+  }
+  return 0;
+}
