@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+#define Max(a,b) (a>b?a:b)
+
+int main()
+{
+  int dp[4][1005] = {0};
+  for(int i = 0; i <= 1000; i++)
+    dp[1][i] = i;
+  for(int cnt = 2; cnt <= 3; cnt++)
+    for(int ind = 1; ind <= 1000; ind++){
+      int val = 10000, max;
+      for(int k = 1; k <= ind; k++){
+        max = Max(dp[cnt-1][k-1], dp[cnt][ind-k])+1;
+        if(val > max)  val = max;
+      }
+      dp[cnt][ind] = val;
+    }
+
+  cout<<dp[3][1000];
+  return 0;
+}
