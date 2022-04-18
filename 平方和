@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+#include<cmath>
+int main()
+{
+  // 请在此输入您的代码
+int g,s,b,q;long long sum=0;
+for(int i=1;i<10;i++)
+ {
+   g=i%10;
+   if(g==2||g==0||g==1||g==9) sum+=pow(i,2);
+ }
+ for(int i=10;i<100;i++)
+ {
+   g=i%10;s=i/10;
+   if(g==2||g==0||g==1||g==9||s==2||s==0||s==1||s==9)
+   sum+=pow(i,2);
+ }
+ for(int i=100;i<1000;i++)
+ {
+    g=i%10;s=i/10%10;b=i/100;
+    if(g==2||g==0||g==1||g==9||s==2||s==0||s==1||s==9||b==2||b==0||b==1||b==9)
+    sum+=pow(i,2);
+ }
+ for(int i=1000;i<=2019;i++)
+ {
+    g=i%10;s=i/10%10;b=i/100%10;q=i/1000;
+    if(g==2||g==0||g==1||g==9||s==2||s==0||s==1||s==9||b==2||b==0||b==1||b==9||q==2||q==0||q==1||q==9)
+    sum+=pow(i,2);
+ }
+ cout<<sum<<endl;
+  return 0;
+}
