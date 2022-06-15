@@ -1,0 +1,29 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    int a[10] = {0};
+    bool iscount[10] = {0};
+    int n, num = 0;
+    scanf("%d",&n);
+    for(int i = 0; i < n; i++)
+        scanf("%d",&a[i]);
+    for(int i = 0; i < n; i++)
+    {
+        if(iscount[i]==true) continue;
+        int count = 1;
+        for(int j = i+1; j < 10; j++)
+        {
+            if(a[i]==a[j])
+            {
+                count++;
+                iscount[j] = true;
+            }
+        } 
+        num += pow(2, count) - 1;
+    } 
+    printf("%d",num);
+    return 0;
+}
