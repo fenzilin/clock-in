@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+
+const long INF=0x3f;
+int N,M,Q;
+long long u,v,w;
+long long e[405][405];
+void map(){
+
+//cin>>N>>M>>Q;
+  scanf("%d%d%d",&N,&M,&Q);
+  for(int i=1;i<=N;i++)
+   // for(int j=1;j<=N;j++)
+  {
+  //  if(i==j)
+   e[i][i]=0;
+   // else e[i][j]=INF;
+  }
+  for(int i=1;i<=M;i++)
+  {
+    //cin>>u>>v>>w;
+   scanf("%lld%lld%lld",&u,&v,&w);
+    if(e[u][v]>w)
+    e[u][v]=e[v][u]=w;
+  }
+}
+
+void floyd(){
+  for(int i=1;i<=N;i++)
+    for(int j=1;j<=N;j++)
+      for(int k=1;k<=N;k++)
+         {
+           if(e[j][i]+e[i][k]<e[j][k])
+            e[j][k]=e[j][i]+e[i][k];
+         }
+}
+int main(int argc, char *argv[])
+{
+   memset(e,INF,sizeof(e));//这步省时间
+  int c,d;
+  // 请在此输入您的代码
+  map();
+  floyd();
+  for(int i=1;i<=Q;i++)
+  {
+
+    scanf("%d%d",&c,&d);
+    if(e[c][d]!=0x3f3f3f3f3f3f3f3f)
+printf("%lld\n",e[c][d]);
+    else printf("-1\n");
+  }
+  return 0;
+}
