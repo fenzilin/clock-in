@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int L[100005];
+int W[100005];
+int main()
+{
+    int N,K;
+    cin>>N>>K;
+    for(int i = 1; i <= N; i++)
+        cin>>L[i]>>W[i];
+    int i = 10000;
+    while(true)
+    {
+        int sum = 0, num1, num2;
+        for(int j = 1; j <= N; j++)
+        {
+            num1 = L[j] / i;
+            num2 = W[j] / i;
+            sum += num1 * num2;
+        }
+        if(sum >= K)
+            break;
+        i--;
+    }
+    cout<<i;
+    return 0;
+}
