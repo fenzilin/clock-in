@@ -1,0 +1,29 @@
+#include <iostream>
+const int maxn=500005;
+long long N[maxn]={0};
+long long b[maxn]={0};
+using namespace std;
+int main()
+{
+  int P,Q;
+  cin>>P>>Q;
+  for(int i=1;i<=P;i++){
+    cin>>N[i];
+    b[i]=N[i]-N[i-1];//定义差分和数组
+  }
+  while(Q>0){
+    long long l,r,x;
+    cin>>l>>r>>x;
+    b[l]+=x;
+    b[r+1]-=x;//对两端进行操作
+    Q--;
+  }
+  for(int i=1;i<=P;i++){
+    N[i]=b[i]+N[i-1];//最后回归原来数组 
+    if(N[i]<0){
+      cout<<0<<" ";
+    }else
+    cout<<N[i]<<" ";
+  }
+  return 0;
+}
