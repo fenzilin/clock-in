@@ -1,0 +1,35 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+  for(int i=0;i<=9;i++){
+    for(int j=0;j<=9;j++){
+      if(j==i){
+        continue;
+      }
+      for(int k=0;k<=9;k++){
+        if(k==i || k==j){
+          continue;
+        }
+        for(int m=0;m<=9;m++){
+          if(m==i || m==j || m==k){
+            continue;
+          }
+          for(int n=0;n<=9;n++){
+            if(n==i || n==j || n==k || n==m){
+              continue;
+            }
+            int temp=i*10000+j*1000+k*100+m*10+n;
+            for(int p=2;p<=9;p++){
+              if(temp*p==n*10000+m*1000+k*100+j*10+i){
+                cout<<temp;
+                return 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
