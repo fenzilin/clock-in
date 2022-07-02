@@ -1,0 +1,38 @@
+
+ **STL 集合算法即可以解决 STLyyds** 
+
+#include<iostream>
+#include<vector>
+#include<algorithm> 
+using namespace std;
+
+std::vector<int> a = {12894792, 92774113, 59529208, 22962224, 2991600, 83340521, 87365045......};
+
+std::vector<int> b = {44894050, 34662733, 44141729, 92774113, 99208727, 91919833, 23727681...... };
+
+std::vector<int> c = {13404901, 39952424, 47847739, 94939581, 13809950, 70966043, 11161555......};
+
+int main(){
+    
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+    sort(c.begin(),c.end());
+    
+    vector<int> had_ab;
+    had_ab.resize(std::min(a.size(),b.size()));
+    set_intersection(a.begin(),a.end(),b.begin(),b.end(), had_ab.begin());
+    
+    vector<int> res;
+    res.resize(std::min(had_ab.size(),c.size()));
+    set_difference(had_ab.cbegin(),had_ab.cend(),c.cbegin(),c.cend(), res.begin());
+    
+    int count(0);
+    for(auto item : res){
+        if(item == 0) {
+            cout << count;
+            exit(0);
+        }
+        ++count;
+    }
+    return 0;
+}
