@@ -1,0 +1,19 @@
+#include<bits/stdc++.h> 
+
+using namespace std;
+
+int main( )
+{
+    int n,res=0,sum=0;
+    cin>>n;
+    for(int i = 1; i <= n; i++)
+    {
+        int m;
+        cin>>m;
+        res+=m;
+        sum+=i;
+    }
+    if(sum==res) cout<<"YES";
+    else cout<<"NO";
+    return 0;
+}
