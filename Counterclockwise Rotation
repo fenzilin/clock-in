@@ -1,0 +1,17 @@
+#include<bits/stdc++.h> 
+ 
+using namespace std;
+const double PI = acos(-1);
+ 
+ 
+int main( )
+{
+    double a,b,d,t;
+    double m,n;
+    cin>>a>>b>>d;
+    t = -d/180*PI;
+    m = a*cos(t)+b*sin(t);
+    n = a*-1*sin(t)+b*cos(t);
+    printf("%.7lf %.7lf",m,n);
+    return 0;
+}
